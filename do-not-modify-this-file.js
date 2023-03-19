@@ -1,13 +1,10 @@
-// setting default game in current.game
-// object because i need reference type
-// I had to add a bolean state flag to the dropdown menu, not to multiply them when reinitialising the game
+// setting default game in current.game, object because I need reference type
 const current = {
   game:'{"size":4,"s":{"s1":"a1","s2":"c4"}}',
   // isDropDownAdded: false,
 };
 // currentGame parameter will keep the state of the game
-// it is needed by reset not to create a gobal board varibale
-// i used default function function parameter so when ever initGame called it will have the current.game
+// I used default function function parameter so when ever initGame called it will have the current.game
 // changed to expression
 const initGame = function(currentGame = current.game) {
   // I inserted selectGame here to start the page with a default game
@@ -15,23 +12,16 @@ const initGame = function(currentGame = current.game) {
   // could not manage to declare this object with const...
   let gameState = selectGame(currentGame);
   const resetButton = document.querySelector('#reset');
-  // I removed eventListeners because of multiple calling of initGame
-  // resetButton.removeEventListener('click', resetGame);
   // I useing a clusure to pass gameState to resetGame callback function as an argument
   resetButton.addEventListener('click', () => resetGame(gameState));
   // I took out aiShoot function's content from here, and put it in index.js
   const aiShootButton = document.querySelector('#aiShoot');
-  // I removed eventListeners because of multiple calling of initGame
-  // aiShootButton.removeEventListener('click', () => aiShoot);
   aiShootButton.addEventListener('click', () => aiShoot);
-  // if (!current.isDropDownAdded) {
   for (const gameNumber in data) {
     document.getElementById('mode').insertAdjacentHTML('beforeend', `
       <option value=${data[gameNumber]}>${gameNumber}</option>
     `);
   }
-  //   current.isDropDownAdded = true;
-  // }
   // I hand to raise a separate function for the next eventListeners callback
   const selectGameCallback = (e) => {
     // updating current.game
@@ -43,8 +33,6 @@ const initGame = function(currentGame = current.game) {
     return gameState;
   };
   const modeDropDown = document.querySelector('.mode > select');
-  // I removed eventListeners because of multiple calling of initGame
-  // modeDropDown.removeEventListener('input', selectGameCallback);
   modeDropDown.addEventListener('input', selectGameCallback);
   //added
   return gameState;

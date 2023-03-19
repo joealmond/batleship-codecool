@@ -2,10 +2,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 
-// let board = [];
-// let currentGame = {};
-
-
 function selectGame(data) {
   data = JSON.parse(data);
   const currentGame = data;
@@ -27,7 +23,6 @@ function handleClick(data) {
 }
 
 function resetGame(gameState) {
-  // initGame();
   for (let i = 0; i < gameState.board.length; i++) {
     for (let k = 0; k < gameState.board[i].length; k++) {
       gameState.board[i][k] = '';
@@ -82,8 +77,6 @@ function aiShoot(data) {
   // y: Math.floor(Math.random() * board.length + 1),
 }
 
-// generateBoard(data)
-// displayBoard({boardnumber: 1, board: board});
-// displayBoard({boardnumber: 2, board: board});
+
 displayMessage('message', 'green');
 displayTextMessage('text message', 'red');
